@@ -75,9 +75,18 @@ curl --location --request POST 'https://api.bigcommerce.com/stores/{STORE HASH}/
 
 In BigCommerce you must add your product with the sane sku as in Stripe. You will also need to add a custom field price for the price object of the subscription from Stripe.
 
-### TODO
+### Additional resources
 ```
-Switch to BC SDK
-Switch to custom fields or options for pricing object
-loop through all products
+Stripe has rolled out a great product that can be used to enable user management using a simple iframe.  This enables users to adjust and manage their subscription within their my account section.
+
+Portal
+https://dashboard.stripe.com/test/settings/billing/portal
+
+Stripe API docs
+Subscription Management Docs
+https://stripe.com/docs/billing/subscriptions/overview
+https://stripe.com/docs/billing/subscriptions/model
+https://stripe.com/docs/billing/subscriptions/change
+
+
 ```
