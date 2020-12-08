@@ -8,7 +8,7 @@ functions:
     environment:
       STORE_HASH: { { BC_STORE_HASH } }
       BC_CLIENT: { { BC_CLIENT_ID } }
-      BC_TOKEN: { { BC_CLIENT_SECRET } }
+      BC_TOKEN: { { BC_TOKEN_ID } }
       STRIPE_SECRET: { { STRIPE_SECRET } }
     events:
       - http:
