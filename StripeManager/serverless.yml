@@ -1,0 +1,17 @@
+service: aws-nodejs
+provider:
+  name: aws
+  runtime: nodejs10.x
+functions:
+  stripeManager:
+    handler: handler.stripeManager
+    environment:
+      STORE_HASH: { { BC_STORE_HASH } }
+      BC_CLIENT: { { BC_CLIENT_ID } }
+      BC_TOKEN: { { BC_CLIENT_SECRET } }
+      STRIPE_SECRET: { { STRIPE_SECRET } }
+    events:
+      - http:
+          path: stripeManager
+          method: post
+          cors: true
