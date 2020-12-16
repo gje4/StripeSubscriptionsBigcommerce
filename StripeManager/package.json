@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "algoliasearch": "3.35.1",
     "node-bigcommerce": "^4.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
