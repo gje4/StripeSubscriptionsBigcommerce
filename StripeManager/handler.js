@@ -43,12 +43,29 @@ async function stripePaymentMethods(purchaseIntent) {
   const paymentIntent = await stripe.paymentIntents.retrieve(purchaseIntent);
   return paymentIntent;
 }
-
+// note: you will need to add a switch-case to this function if you have multiple products so that the proper price is
+// applied to the subscription
 async function addSubscription(sku, customerId, paymentMethod) {
+  const priceId = 'price_1HGxdOKzv2axJMmQabIRP6OM';
+  /*
+  // example of a switch-case
+  let priceId = '';
+  switch (sku) {
+    case 'prod_HpotjGuPDnCacx':
+      priceId = 'price_1HGxdOKzv2axJMmQabIRP6OM';
+      break;
+    case 'prod_YzotjGuPDnCd8a':
+      priceId = 'price_3HmxdOzzv2axJMmQabIRP6OM';
+      break;
+    default:
+      priceId = 'price_1HGxdOKzv2axJMmQabIRP6OM';
+      break;
+  }
+  */
   const subscription = await stripe.subscriptions.create({
     customer: customerId,
     default_payment_method: paymentMethod,
-    items: [{ price: "price_1HGxdOKzv2axJMmQabIRP6OM" }]
+    items: [{ price: priceId }]
   });
   return subscription;
 }
@@ -66,6 +83,7 @@ module.exports.stripeManager = async event => {
   try {
     const orderData = await getOrderData(data.data.orderId);
     const orderItemsData = await getOrderDataProducts(data.data.orderId);
+    // note: this will need to be edited for your product SKUs.
     if (orderItemsData[0].sku == "prod_HpotjGuPDnCacx" || "prod_HpotjGuPDnCacx-PR") {
       //get transaction from BC and price from the variation option chosen (first 1)
 
